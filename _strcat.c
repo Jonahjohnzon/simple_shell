@@ -1,5 +1,5 @@
 #inlcude "main.h"
-void _strcat(char *des,const char *src)
+void _strcat(char *des, const char *src)
 {
 	while (*des != '\0')
 	{
