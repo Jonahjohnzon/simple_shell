@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "main.h"
 /**
  * _getenv - to get environment
