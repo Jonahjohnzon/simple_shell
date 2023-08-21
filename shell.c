@@ -60,13 +60,6 @@ int main(void)
 {
 	pid_t pid;
 
-	int value;
-
-	while (true)
-	{
-	_putchar('$');
-	_putchar(' ');
-
 	size_t n = 10;
 
 	char *buffer = NULL;
@@ -75,9 +68,11 @@ int main(void)
 
 	char *tokens[200];
 
-	char *argg;
+	int now;
 
-	int n;
+	while (true)
+	{_putchar('$');
+	_putchar(' ');
 
 	result = getline(&buffer, &n, stdin);
 	iffunction(tokens, result, buffer);
@@ -93,7 +88,7 @@ int main(void)
 	}
 	else
 	{
-	waitpid(pid, &n, 0);
+	waitpid(pid, &now, 0);
 	}
 	free(buffer);
 	}

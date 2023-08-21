@@ -7,12 +7,10 @@
  */
 
 char *_getenv(char *name)
-{	char environment =
+{	char *pt =
 		"PATH=/usr/bin:/bin\n"
 		"HOME=/home/user\n"
 		"USER=user\n";
-
-	char *pt = environment;
 
 	while (*pt != '\0')
 	{
@@ -31,11 +29,11 @@ char *_getenv(char *name)
 		}
 		while (*pt != '\0' && *pt != '\n')
 		{
-			p++;
+			pt++;
 		}
 		if (*pt == '\n')
 		{
-			p++;
+			pt++;
 		}
 	}
 	return (NULL);
@@ -65,7 +63,7 @@ void _execvp(const char *file, char *const argv[])
 		_strcat(path, file);
 		if (access(path, X_OK) == 0)
 		{
-			pid_t pid = fork()
+			pid_t pid = fork();
 
 				if (pid == -1)
 				{
