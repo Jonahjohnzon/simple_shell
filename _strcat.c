@@ -20,5 +20,5 @@ void _strcat(char *des, const char *src)
 	}
 	*des = '\0';
 
-	return(0);
+	return (0);
 }
