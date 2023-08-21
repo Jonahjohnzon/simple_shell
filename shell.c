@@ -52,13 +52,14 @@ void iffunction(char **tokens, ssize_t result, char *buffer)
 	_strtok(buffer, tokens);
 }
 /**
- * main - main function
- * Description: this is where all functions come together
- * Return: 0 sucess
+ * _exec - execve
+ * Description: exec
+ * Return: void
  */
-int main(void)
-{
-	pid_t pid;
+void _exec(void)
+{	pid_t pid;
+
+	int now;
 
 	size_t n = 10;
 
@@ -67,12 +68,6 @@ int main(void)
 	ssize_t result;
 
 	char *tokens[200];
-
-	int now;
-
-	while (true)
-	{_putchar('$');
-	_putchar(' ');
 
 	result = getline(&buffer, &n, stdin);
 	iffunction(tokens, result, buffer);
@@ -91,6 +86,18 @@ int main(void)
 	waitpid(pid, &now, 0);
 	}
 	free(buffer);
+}
+/**
+ * main - main function
+ * Description: this is where all functions come together
+ * Return: 0 sucess
+ */
+int main(void)
+{
+	while (true)
+	{_putchar('$');
+	_putchar(' ');
+	_exec();
 	}
 	return (0);
 }

@@ -7,10 +7,12 @@
  */
 
 char *_getenv(char *name)
-{	char *pt =
+{	char environment[] =
 		"PATH=/usr/bin:/bin\n"
 		"HOME=/home/user\n"
 		"USER=user\n";
+
+	char *pt = environment;
 
 	while (*pt != '\0')
 	{
