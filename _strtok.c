@@ -16,7 +16,7 @@ void _strtok(char *p, char **tokens)
 	while (token != NULL && tokenCount < 200)
 	{
 		tokens[tokenCount] = token;
-		toeknCount++;
+		tokenCount++;
 		token = strtok(NULL, delim);
 	}
 	tokens[tokenCount] = NULL;
