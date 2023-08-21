@@ -16,6 +16,4 @@ void _strcpy(char *des, const char *src)
 	}
 
 	*des = '\0';
-
-	return (0);
 }

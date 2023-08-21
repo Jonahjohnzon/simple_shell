@@ -1,9 +1,10 @@
+#include <stdio.h>
+#include <string.h>
 #include "main.h"
 /**
- * _strtok - strtok function
- * Description: Breaks strings into series of tokens
+ * _strtok - breaks string into tokens
  * @p: string
- * @tokens: C string of the delimiters
+ * @tokens: delimiters
  */
 void _strtok(char *p, char **tokens)
 {
@@ -15,10 +16,8 @@ void _strtok(char *p, char **tokens)
 	while (token != NULL && tokenCount < 200)
 	{
 		tokens[tokenCount] = token;
-		tokenCount++;
+		toeknCount++;
 		token = strtok(NULL, delim);
 	}
 	tokens[tokenCount] = NULL;
-
-	return (0);
 }

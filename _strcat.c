@@ -1,4 +1,4 @@
-#inlcude "main.h"
+#include "main.h"
 /**
  * _strcat - strcat function
  * Description: Append string of pointers
@@ -19,6 +19,4 @@ void _strcat(char *des, const char *src)
 		src++;
 	}
 	*des = '\0';
-
-	return (0);
 }
