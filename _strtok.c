@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <string.h>
 #include "main.h"
 /**
  * _strtok - breaks string into tokens
@@ -11,13 +9,13 @@ void _strtok(char *p, char **tokens)
 	char *delim = " ";
 
 	int tokenCount = 0;
-	char *token = strtok(p, delim);
+	char *token = _stringtok(p, delim);
 
 	while (token != NULL && tokenCount < 200)
 	{
 		tokens[tokenCount] = token;
 		tokenCount++;
-		token = strtok(NULL, delim);
+		token = _stringtok(NULL, delim);
 	}
 	tokens[tokenCount] = NULL;
 }
