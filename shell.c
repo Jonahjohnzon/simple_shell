@@ -69,7 +69,7 @@ void _exec(void)
 
 	char *tokens[200];
 
-	result = getline(&buffer, &n, stdin);
+	result = _getline(&buffer, &n, stdin);
 	iffunction(tokens, result, buffer);
 	pid = fork();
 
