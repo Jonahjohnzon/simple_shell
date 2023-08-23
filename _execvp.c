@@ -101,7 +101,7 @@ void _execvp(const char *file, char *const argv[])
 	else
 	{
 	write(STDOUT_FILENO, "Command not found: ", 19);
-	write(STDOUT_FILENO, argv[0], strlen(argv[0]));
+	write(STDOUT_FILENO, argv[0], _strlen(argv[0]));
 	write(STDOUT_FILENO, "\n", 1);
 	}
 	}

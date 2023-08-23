@@ -22,4 +22,6 @@ void print_environment(void);
 void _putchar(char c);
 ssize_t _getline(char **line, size_t *n, FILE *stream);
 char *_stringtok(char *str, const char *delim);
+int _atoi(const char *str);
+ssize_t _strlen(const char *str);
 #endif

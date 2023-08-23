@@ -30,12 +30,16 @@ int _strcmp(const char *st1, const char *st2)
  * Return: void
  */
 void iffunction(char **tokens, ssize_t result, char *buffer)
-{
+{	
+	(void)buffer;
 	if (result == -1)
 	{
-		perror("Error in getline");
+		if (isatty(STDIN_FILENO))
+		{
+		_putchar('\n');
 		free(buffer);
-		exit(EXIT_FAILURE);
+		}
+		exit(0);
 	}
 	if (buffer[result - 1] == '\n')
 	{
@@ -72,17 +76,35 @@ void _exec(void)
 	free(buffer);
 }
 /**
+ * checck - checker
+ * @sn: input
+ */
+void checck(int sn)
+	{
+	if (sn == SIGINT)
+	{
+	_putchar('\n');
+	_putchar('$');
+	}
+}
+/**
  * main - main function
  * Description: this is where all functions come together
  * Return: 0 sucess
  */
 int main(void)
-{
-	while (true)
-	{_putchar('$');
+{	
+
+	signal(SIGINT, checck);
+	while (1)
+	{
+	if (isatty(STDIN_FILENO))
+	{
+	_putchar('$');
 	_putchar(' ');
-	fflush(stdout);
+	}
 	_exec();
 	}
+
 	return (0);
 }
