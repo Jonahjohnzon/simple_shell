@@ -83,8 +83,7 @@ void checck(int sn)
 	{
 	if (sn == SIGINT)
 	{
-	_putchar('\n');
-	_putchar('$');
+	write(1, "\n#cisfun$ ", 11);
 	}
 }
 /**
@@ -100,8 +99,7 @@ int main(void)
 	{
 	if (isatty(STDIN_FILENO))
 	{
-	_putchar('$');
-	_putchar(' ');
+	write(1, "#cisfun$ ", 9);
 	}
 	_exec();
 	}
