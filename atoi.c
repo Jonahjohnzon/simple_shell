@@ -1,10 +1,10 @@
-#include "shell.c"
+#include "shell.h"
 /**
  * _atoi - converts a string into an integer
  *@str: string represntation
  *Return: int
  */
-int *_atoi(char *str)
+int _atoi(char *str)
 {
 	int i, j, k;
 
