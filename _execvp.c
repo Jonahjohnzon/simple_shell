@@ -1,4 +1,29 @@
 #include "main.h"
+/** exe_now - execve
+ * Description: execute
+ * @c: input
+ * @argv: input
+ * Return: void
+ */
+void exe_now(char *c, char *const argv[])
+{
+	pid_t pid = fork(); 
+
+	if (pid == -1)
+	{
+	perror("fork");
+	}
+	else if (pid == 0)
+	{
+	execve(c, argv, NULL);
+	perror("execve");
+	exit(EXIT_FAILURE);
+	}
+	else
+	{
+	wait(NULL);
+	}
+}
 /**
  * _getenv - to get environment
  * Description: env get
@@ -6,39 +31,34 @@
  * Return: String pointer
  */
 
-char *_getenv(char *name)
-{	char environment[] =
-		"PATH=/usr/bin:/bin\n"
-		"HOME=/home/user\n"
-		"USER=user\n";
+char *_getenv(const char *name)
+{
+	int a, b;
+	char *value;
 
-	char *pt = environment;
-
-	while (*pt != '\0')
+	if (!name)
+		return (NULL);
+	for (a = 0; environ[a]; a++)
 	{
-		char *env_var = pt;
-
-		char *name_p = name;
-
-		while (*name_p != '\0' && *env_var == *name_p)
-		{
-			env_var++;
-			name_p++;
-		}
-		if (*env_var == '=' && *name_p == '\0')
-		{
-			return (env_var + 1);
-		}
-		while (*pt != '\0' && *pt != '\n')
-		{
-			pt++;
-		}
-		if (*pt == '\n')
-		{
-			pt++;
-		}
+	b = 0;
+	if (name[b] == environ[a][b])
+	{
+	while (name[b])
+	{
+	if (name[b] != environ[a][b])
+	{
+	break;
 	}
-	return (NULL);
+	b++;
+	}
+	if (name[b] == '\0')
+	{
+	value = (environ[a] + b + 1);
+	return (value);
+	}
+	}
+	}
+	return (0);
 }
 /**
  * _execvp - execvp function
@@ -49,45 +69,39 @@ char *_getenv(char *name)
  */
 
 void _execvp(const char *file, char *const argv[])
-{
+{	
+	if (access(argv[0], X_OK) == 0)
+	{
+		exe_now(argv[0], argv);
+	}
+	else
+	{
 	char *p = _getenv("PATH");
 
-	char *token = strtok(p, ":");
+	if (p != NULL)
+	{
+	char *token = _stringtok(p, ":");
 
 	while (token != NULL)
 	{
 		char path[1024];
-
-		int stt;
 
 		_strcpy(path, token);
 		_strcat(path, "/");
 		_strcat(path, file);
 		if (access(path, X_OK) == 0)
 		{
-			pid_t pid = fork();
-
-				if (pid == -1)
-				{
-					perror("fork");
-					exit(EXIT_FAILURE);
-				}
-				else if (pid == 0)
-				{
-					execve(path, argv, NULL);
-					perror("execve");
-					exit(EXIT_FAILURE);
-				}
-				else
-				{
-					waitpid(pid, &stt, 0);
-					exit(0);
-					return;
-				}
+			exe_now(path, argv);
+			break;
 		}
 		token = _stringtok(NULL, ":");
-		exit(0);
-
 	}
-	exit(EXIT_FAILURE);
+	}
+	else
+	{
+	write(STDOUT_FILENO, "Command not found: ", 19);
+	write(STDOUT_FILENO, argv[0], strlen(argv[0]));
+	write(STDOUT_FILENO, "\n", 1);
+	}
+	}
 }

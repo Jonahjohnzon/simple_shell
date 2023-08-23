@@ -57,10 +57,7 @@ void iffunction(char **tokens, ssize_t result, char *buffer)
  * Return: void
  */
 void _exec(void)
-{	pid_t pid;
-
-	int now;
-
+{
 	size_t n = 10;
 
 	char *buffer = NULL;
@@ -71,20 +68,7 @@ void _exec(void)
 
 	result = _getline(&buffer, &n, stdin);
 	iffunction(tokens, result, buffer);
-	pid = fork();
-
-	if (pid < 0)
-	{
-		perror("Error with fork()");
-	}
-	if (pid == 0)
-	{
-		_execvp(tokens[0], tokens);
-	}
-	else
-	{
-	waitpid(pid, &now, 0);
-	}
+	_execvp(tokens[0], tokens);
 	free(buffer);
 }
 /**
@@ -97,6 +81,7 @@ int main(void)
 	while (true)
 	{_putchar('$');
 	_putchar(' ');
+	fflush(stdout);
 	_exec();
 	}
 	return (0);

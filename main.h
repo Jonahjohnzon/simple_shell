@@ -14,7 +14,7 @@ extern char **environ;
 
 void _strtok(char *p, char **tokens);
 void _execvp(const char *file, char *const argv[]);
-char *_getenv(char *name);
+char *_getenv(const char *name);
 void _strcpy(char *des, const char *src);
 void _strcat(char *des, const char *src);
 int _strcmp(const char *st1, const char *st2);
