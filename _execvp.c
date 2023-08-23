@@ -1,5 +1,6 @@
 #include "main.h"
-/** exe_now - execve
+/**
+ * exe_now - execve
  * Description: execute
  * @c: input
  * @argv: input
@@ -7,7 +8,7 @@
  */
 void exe_now(char *c, char *const argv[])
 {
-	pid_t pid = fork(); 
+	pid_t pid = fork();
 
 	if (pid == -1)
 	{
@@ -69,7 +70,7 @@ char *_getenv(const char *name)
  */
 
 void _execvp(const char *file, char *const argv[])
-{	
+{
 	if (access(argv[0], X_OK) == 0)
 	{
 		exe_now(argv[0], argv);
