@@ -2,7 +2,7 @@
 
 /**
  * _exitnow - exit
- * @arv: input
+ * @arvg: input
  */
 void _exitnow(char **arvg)
 {
@@ -10,10 +10,10 @@ void _exitnow(char **arvg)
 
 	if (arvg[1])
 	{
-		n = atoi(arvg[1]);
+		n = _atoi(arvg[1]);
 		if (n <= -1)
 		{
-			n = 2;
+		n = 2;
 		}
 		freearvg(arvg);
 		exit(n);

@@ -15,7 +15,7 @@ void(*_checkers(char **arvg))(char **arvg)
 		{NULL, NULL}
 	};
 
-	for (a = 0; T[b].name; a++)
+	for (a = 0; T[a].name; a++)
 	{
 		b = 0;
 		if (T[a].name[b] == arvg[0][b])

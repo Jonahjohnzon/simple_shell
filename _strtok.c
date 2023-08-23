@@ -15,7 +15,7 @@ char **_strtok(char *str, const char *delim)
 	char *token;
 	char *dupl;
 
-	dupl = malloc(strlen(str) + 1);
+	dupl = malloc(_strlen(str) + 1);
 	if (dupl == NULL)
 	{
 		perror(_getenv("_"));
@@ -31,7 +31,7 @@ char **_strtok(char *str, const char *delim)
 
 	token = strtok(dupl, delim);
 	muster = malloc((sizeof(char *) * 2));
-	muster[0] = strdup(token);
+	muster[0] = _strdup(token);
 
 	i = 1;
 	j = 3;
@@ -39,7 +39,7 @@ char **_strtok(char *str, const char *delim)
 	{
 		token = strtok(NULL, delim);
 		muster = _realloc(muster, (sizeof(char *) * (j - 1)), (sizeof(char *) * j));
-		muster[i] = strdup(token);
+		muster[i] = _strdup(token);
 		i++;
 		j++;
 	}
@@ -67,7 +67,6 @@ void *_realloc(void *ind, unsigned int past_size, unsigned int built_size)
 		return (malloc(built_size));
 	}
 	if (built_size == past_size)
-		return (ind);
 	{
 		return (ind);
 	}

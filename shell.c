@@ -31,7 +31,7 @@ void _EOF(int l, char *buff)
 	}
 }
 /**
-  * _isattiy_ - check
+  * _isatty_ - check
   */
 
 void _isatty_(void)
@@ -49,11 +49,8 @@ void _isatty_(void)
 int main(void)
 {
 	ssize_t len = 0;
-
 	char *buff = NULL, *value, *path, **arvg;
-
 	size_t size = 0;
-
 	list_p *head = '\0';
 	void (*f)(char **);
 
@@ -65,9 +62,7 @@ int main(void)
 		_EOF(len, buff);
 		arvg = _strtok(buff, " \n");
 		if (!arvg || !arvg[0])
-		{
 			_exec(arvg);
-		}
 		else
 		{
 			value = _getenv("PATH");
@@ -75,10 +70,8 @@ int main(void)
 			path = _which(arvg[0], head);
 			f = _checkers(arvg);
 			if (f)
-			{
 				free(buff);
 				f(arvg);
-			}
 			else if (!path)
 				_exec(arvg);
 			else if (path)

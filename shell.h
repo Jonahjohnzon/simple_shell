@@ -21,7 +21,7 @@ void _print_word(char *str);
 void(*_checkers(char **arvg))(char **arvg);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int _strlen(char *str);
-
+int _atoi(char *str);
 
 extern char **environ;
 /**
@@ -42,7 +42,7 @@ list_p *add_node_end(list_p **head, char *str);
 void free_l(list_p *head);
 /**
  * struct _build - linked list
- * @namer: build
+ * @name: build
  * @func: execute
  */
 typedef struct _build
