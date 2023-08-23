@@ -24,7 +24,7 @@ char _strtok(char *str, const char *delim)
 	i = 0;
 	while (str[i])
 	{
-		copy[i] = str[i];
+		dupl[i] = str[i];
 		i++;
 	}
 	dupl[i] = '\0';
@@ -63,12 +63,16 @@ void *_realloc(void *ind, unsigned int past_size, unsigned int built_size)
 	unsigned int i;
 
 	if (ind == NULL)
+	{
 		return (malloc(built_size));
+	}
 
 	if (built_size == past_size)
-		return (ptr);
+	{
+		return (ind);
+	}
 
-	if (built_size == 0 && ptr != NULL)
+	if (built_size == 0 && ind != NULL)
 	{
 		free(ind);
 		return (NULL);

@@ -6,7 +6,7 @@
  */
 void chek(int sn)
 {
-	if (sum == SIGINT)
+	if (sn == SIGINT)
 	{
 		_print_word("\n#cisfun$ ");
 	}
@@ -17,7 +17,7 @@ void chek(int sn)
 * @l: input
 * @buff: input
  */
-void _EOF(int len, char *buff)
+void _EOF(int l, char *buff)
 {
 	(void)buff;
 	if (l == -1)
@@ -54,38 +54,38 @@ int main(void)
 
 	size_t size = 0;
 
-	list_path *head = '\0';
+	list_p *head = '\0';
 	void (*f)(char **);
 
-	signal(SIGINT, sig_handler);
+	signal(SIGINT, chek);
 	while (len != EOF)
 	{
 		_isatty_();
 		len = getline(&buff, &size, stdin);
 		_EOF(len, buff);
-		arv = splitstring(buff, " \n");
+		arvg = _strtok(buff, " \n");
 		if (!arvg || !arvg[0])
 		{
-			execute(arvg);
+			_exec(arvg);
 		}
 		else
 		{
 			value = _getenv("PATH");
-			head = linkpath(value);
-			pathname = _which(arvg[0], head);
-			f = checkerss(arvg);
+			head = linkp(value);
+			path = _which(arvg[0], head);
+			f = _checkers(arvg);
 			if (f)
 			{
 				free(buff);
 				f(arvg);
 			}
 			else if (!path)
-				execute(arvg);
+				_exec(arvg);
 			else if (path)
 			{
 				free(arvg[0]);
 				arvg[0] = path;
-				execute(arvg);
+				_exec(arvg);
 			}
 		}
 	}
