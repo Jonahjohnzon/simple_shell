@@ -52,7 +52,7 @@ void _execvp(const char *file, char *const argv[])
 {
 	char *p = _getenv("PATH");
 
-	char *token = _stringtok(p, ":");
+	char *token = strtok(p, ":");
 
 	while (token != NULL)
 	{
@@ -85,7 +85,7 @@ void _execvp(const char *file, char *const argv[])
 					return;
 				}
 		}
-		token = stringtok(NULL, ":");
+		token = _stringtok(NULL, ":");
 		exit(0);
 
 	}
