@@ -56,5 +56,6 @@ void _exitnow(char **arvg);
 void env(char **arv);
 void freearvg(char **arvg);
 void _unset(char **arvg);
+void _setenv(char **arv);
 #endif
 
