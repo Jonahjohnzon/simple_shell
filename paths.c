@@ -8,7 +8,7 @@ list_p *linkp(char *path)
 {
 	list_p *head = '\0';
 	char *token;
-	char *chpath = strdup(path);
+	char *chpath = _strdup(path);
 
 	token = strtok(chpath, ":");
 	while (token)
