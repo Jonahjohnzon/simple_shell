@@ -12,10 +12,11 @@ void(*_checkers(char **arvg))(char **arvg)
 	_build T[] = {
 		{"exit", _exitnow},
 		{"env", env},
+		{"unsetenv", _unset},
 		{NULL, NULL}
 	};
 
-	for (a = 0; T[b].name; a++)
+	for (a = 0; T[a].name; a++)
 	{
 		b = 0;
 		if (T[a].name[b] == arvg[0][b])

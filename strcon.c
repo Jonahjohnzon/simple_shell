@@ -44,9 +44,9 @@ char *concat_all(char *first, char *second, char *third)
 	char *output;
 	int l1, l2, l3, i, j;
 
-	l1 = strlen(first);
-	l2 = strlen(second);
-	l3 = strlen(third);
+	l1 = _strlen(first);
+	l2 = _strlen(second);
+	l3 = _strlen(third);
 
 	output = malloc(l1 + l2 + l3 + 1);
 	if (!output)
