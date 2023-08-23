@@ -1,108 +1,95 @@
-#include "main.h"
+#include "shell.h"
 
 /**
- * _strcmp - strcmp function
- * Description: to compare two strings
- * @st1: input
- * @st2: input
- * Return: int
+ * chek - chek
+ * @sn: input
  */
-
-int _strcmp(const char *st1, const char *st2)
+void chek(int sn)
 {
-	while (*st1 != '\0' && *st2 != '\0')
+	if (sum == SIGINT)
 	{
-		if (*st1 != *st2)
-		{
-			return (*st1 - *st2);
-		}
-		st1++;
-		st2++;
+		_print_word("\n#cisfun$ ");
 	}
-	return (*st1 - *st2);
 }
+
 /**
- * iffunction - hold my if statements
- * Description: if statements
- * @tokens: input
- * @result: input
- * @buffer: input
- * Return: void
+* _EOF - End of File
+* @l: input
+* @buff: input
  */
-void iffunction(char **tokens, ssize_t result, char *buffer)
-{	
-	(void)buffer;
-	if (result == -1)
+void _EOF(int len, char *buff)
+{
+	(void)buff;
+	if (l == -1)
 	{
 		if (isatty(STDIN_FILENO))
 		{
-		_putchar('\n');
-		free(buffer);
+			_print_word("\n");
+			free(buff);
 		}
 		exit(0);
 	}
-	if (buffer[result - 1] == '\n')
-	{
-		buffer[result - 1] = '\0';
-	}
-	if (_strcmp(buffer, "exit") == 0)
-	{
-		exit(0);
-	}
-	if (_strcmp(buffer, "env") == 0)
-	{
-		print_environment();
-	}
-	_strtok(buffer, tokens);
 }
 /**
- * _exec - execve
- * Description: exec
- * Return: void
- */
-void _exec(void)
+  * _isattiy_ - check
+  */
+
+void _isatty_(void)
 {
-	size_t n = 10;
-
-	char *buffer = NULL;
-
-	ssize_t result;
-
-	char *tokens[200];
-
-	result = _getline(&buffer, &n, stdin);
-	iffunction(tokens, result, buffer);
-	_execvp(tokens[0], tokens);
-	free(buffer);
-}
-/**
- * checck - checker
- * @sn: input
- */
-void checck(int sn)
-	{
-	if (sn == SIGINT)
-	{
-	write(1, "\n#cisfun$ ", 11);
-	}
-}
-/**
- * main - main function
- * Description: this is where all functions come together
- * Return: 0 sucess
- */
-int main(void)
-{	
-
-	signal(SIGINT, checck);
-	while (1)
-	{
 	if (isatty(STDIN_FILENO))
 	{
-	write(1, "#cisfun$ ", 9);
+		_print_word("#cisfun$ ");
 	}
-	_exec();
-	}
+}
+/**
+ * main - main
+ * Return: 0 on success
+ */
 
+int main(void)
+{
+	ssize_t len = 0;
+
+	char *buff = NULL, *value, *path, **arvg;
+
+	size_t size = 0;
+
+	list_path *head = '\0';
+	void (*f)(char **);
+
+	signal(SIGINT, sig_handler);
+	while (len != EOF)
+	{
+		_isatty_();
+		len = getline(&buff, &size, stdin);
+		_EOF(len, buff);
+		arv = splitstring(buff, " \n");
+		if (!arvg || !arvg[0])
+		{
+			execute(arvg);
+		}
+		else
+		{
+			value = _getenv("PATH");
+			head = linkpath(value);
+			pathname = _which(arvg[0], head);
+			f = checkerss(arvg);
+			if (f)
+			{
+				free(buff);
+				f(arvg);
+			}
+			else if (!path)
+				execute(arvg);
+			else if (path)
+			{
+				free(arvg[0]);
+				arvg[0] = path;
+				execute(arvg);
+			}
+		}
+	}
+	freearvg(arvg);
+	free(buff);
 	return (0);
 }
