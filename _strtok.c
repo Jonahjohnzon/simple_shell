@@ -66,9 +66,9 @@ void *_realloc(void *ind, unsigned int past_size, unsigned int built_size)
 		return (malloc(built_size));
 
 	if (built_size == past_size)
-		return (ptr);
+		return (ind);
 
-	if (built_size == 0 && ptr != NULL)
+	if (built_size == 0 && ind != NULL)
 	{
 		free(ind);
 		return (NULL);
@@ -95,3 +95,4 @@ void *_realloc(void *ind, unsigned int past_size, unsigned int built_size)
 	}
 	return (built);
 }
+
