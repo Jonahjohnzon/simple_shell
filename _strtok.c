@@ -8,14 +8,14 @@
  * Return: muster of pointers
  */
 
-char _strtok(char *str, const char *delim)
+char **_strtok(char *str, const char *delim)
 {
 	int i, j;
 	char **muster;
 	char *token;
 	char *dupl;
 
-	dupl = malloc(_strlen(str) + 1);
+	dupl = malloc(strlen(str) + 1);
 	if (dupl == NULL)
 	{
 		perror(_getenv("_"));
@@ -31,7 +31,7 @@ char _strtok(char *str, const char *delim)
 
 	token = strtok(dupl, delim);
 	muster = malloc((sizeof(char *) * 2));
-	muster[0] = _strdup(token);
+	muster[0] = strdup(token);
 
 	i = 1;
 	j = 3;
@@ -39,7 +39,7 @@ char _strtok(char *str, const char *delim)
 	{
 		token = strtok(NULL, delim);
 		muster = _realloc(muster, (sizeof(char *) * (j - 1)), (sizeof(char *) * j));
-		muster[i] = _strdup(token);
+		muster[i] = strdup(token);
 		i++;
 		j++;
 	}

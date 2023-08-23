@@ -10,11 +10,11 @@ void(*_checkers(char **arvg))(char **arvg)
 	int a, b;
 
 	_build T[] = {
-		{"exit", exitt},
+		{"exit", _exitnow},
 		{"env", env}
 	};
 
-	for (i = 0; T[i].name; a++)
+	for (a = 0; T[b].name; a++)
 	{
 		b = 0;
 		if (T[a].name[b] == arvg[0][b])

@@ -1,3 +1,4 @@
+#include "shell.c"
 /**
  * freearvg - frees
  *@arvg: pointers
