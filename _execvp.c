@@ -81,7 +81,7 @@ void _execvp(const char *file, char *const argv[])
 
 	if (p != NULL)
 	{
-	char *token = _stringtok(p, ":");
+	char *token = strtok(p, ":");
 
 	while (token != NULL)
 	{
@@ -95,7 +95,7 @@ void _execvp(const char *file, char *const argv[])
 			exe_now(path, argv);
 			break;
 		}
-		token = _stringtok(NULL, ":");
+		token = strtok(NULL, ":");
 	}
 	}
 	else
