@@ -13,7 +13,7 @@ void(*_checkers(char **arvg))(char **arvg)
 		{"exit", _exitnow},
 		{"env", env},
 		{"unsetenv", _unset},
-		{"setenv", _setenv},
+		{"setenv", _setenv}i,
 		{NULL, NULL}
 	};
 

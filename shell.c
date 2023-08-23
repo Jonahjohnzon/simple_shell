@@ -8,7 +8,7 @@ void chek(int sn)
 {
 	if (sn == SIGINT)
 	{
-		_print_word("\n#cisfun$ ");
+		_print_word("\n$ ");
 	}
 }
 
@@ -38,7 +38,7 @@ void _isatty_(void)
 {
 	if (isatty(STDIN_FILENO))
 	{
-		_print_word("#cisfun$ ");
+		_print_word("$ ");
 	}
 }
 /**
