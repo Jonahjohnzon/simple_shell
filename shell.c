@@ -70,8 +70,10 @@ int main(void)
 			path = _which(arvg[0], head);
 			f = _checkers(arvg);
 			if (f)
+			{
 				free(buff);
 				f(arvg);
+			}
 			else if (!path)
 				_exec(arvg);
 			else if (path)
