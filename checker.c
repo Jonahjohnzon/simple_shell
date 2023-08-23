@@ -2,7 +2,7 @@
 
 /**
 * _checkers - check
-* @arv: input
+* @arvg: input
 * Return: void
 */
 void(*_checkers(char **arvg))(char **arvg)
@@ -11,7 +11,8 @@ void(*_checkers(char **arvg))(char **arvg)
 
 	_build T[] = {
 		{"exit", _exitnow},
-		{"env", env}
+		{"env", env},
+		{NULL, NULL}
 	};
 
 	for (a = 0; T[b].name; a++)

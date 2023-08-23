@@ -89,6 +89,7 @@ int main(void)
 			}
 		}
 	}
+	free_l(head);
 	freearvg(arvg);
 	free(buff);
 	return (0);
