@@ -1,6 +1,4 @@
 #include "shell.h"
-
-
 /**
  * _getenv - get path
  * @name: input
