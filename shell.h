@@ -34,6 +34,7 @@ typedef struct list_p
 	char *dir;
 	struct list_p *p;
 } list_p;
+
 char *_strdup(char *str);
 char *concat_all(char *first, char *second, char *third);
 char *_which(char *file, list_p *head);
@@ -50,8 +51,10 @@ typedef struct _build
 	char *name;
 	void (*func)(char **);
 } _build;
+
 void _exitnow(char **arvg);
 void env(char **arv);
 void freearvg(char **arvg);
+void _unset(char **arvg);
 #endif
 

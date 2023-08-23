@@ -12,6 +12,7 @@ void(*_checkers(char **arvg))(char **arvg)
 	_build T[] = {
 		{"exit", _exitnow},
 		{"env", env},
+		{"unsetenv", _unset},
 		{NULL, NULL}
 	};
 
