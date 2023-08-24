@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * strcpy - copies a string pointr to
+ * _strcpy - copies a string pointr to
  * @des: the destination
  * @src: the source
  *
  * Return: pointer to the destination
  */
-char *strcpy(char *des, char *src)
+char *_strcpy(char *des, char *src)
 {
 	int k = 0;
 
@@ -23,12 +23,12 @@ char *strcpy(char *des, char *src)
 }
 
 /**
- * strdup - duplicates a string
+ * _strdup - duplicates a string
  * @str: string to duplicate
  *
  * Return: pointer to the duplicated string
  */
-char *strdup(const char *str)
+char *_strdup(const char *str)
 {
 	int len = 0;
 	char *dst;
@@ -46,12 +46,12 @@ char *strdup(const char *str)
 }
 
 /**
- *puts - writes an input string
+ *_puts - writes an input string
  *@str: string to be written
  *
  * Return: Nothing
  */
-void puts(char *str)
+void _puts(char *str)
 {
 	int i = 0;
 

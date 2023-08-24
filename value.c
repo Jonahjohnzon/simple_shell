@@ -104,4 +104,4 @@ int r_alias(info_table *info)
 		info->argv[0] = p;
 	}
 	return (1);
-i}
+}
