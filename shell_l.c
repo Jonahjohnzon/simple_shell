@@ -14,7 +14,7 @@ int _app(info_table *inform, char **a)
 
 	while (r != -1 && built_ret != -2)
 	{
-		clear_info(inform);
+		cl_info(inform);
 		if (interactive(inform))
 		{
 			_puts("$ ");
@@ -23,8 +23,8 @@ int _app(info_table *inform, char **a)
 		r = _input(inform);
 		if (r != -1)
 		{
-			set_info(inform, a);
-			built_ret = find_builtin(inform);
+			set_inf(inform, a);
+			built_ret = find_built(inform);
 			if (built_ret == -1)
 				find_cmd(inform);
 		}
@@ -57,9 +57,9 @@ int _app(info_table *inform, char **a)
 int find_built(info_table *inform)
 {
 	int i, built_in_ret = -1;
-	builtin_table builtintbl[] = {
+	built_table builtintbl[] = {
 		{"exit", _exit},
-		{"env", _myenv},
+		{"env", _env},
 		{NULL, NULL}
 	};
 
@@ -101,12 +101,12 @@ void find_c(info_table *inform)
 	if (pathe)
 	{
 		inform->path = pathe;
-		fork_c(info);
+		fork_c(inform);
 	}
 	else
 	{
 		if ((interactive(inform) || _getenv(inform, "PATH=")
-			|| inform->argv[0][0] == '/') && _cmd(info, inform->argv[0]))
+			|| inform->argv[0][0] == '/') && _cmd(inform, inform->argv[0]))
 			fork_c(inform);
 		else if (*(inform->arg) != '\n')
 		{

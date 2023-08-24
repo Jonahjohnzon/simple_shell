@@ -14,7 +14,7 @@ void _errputs(char *str)
 		return;
 	while (str[a] != '\0')
 	{
-		_eputchar(str[a]);
+		_errputchar(str[a]);
 		a++;
 	}
 }

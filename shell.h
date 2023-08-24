@@ -84,6 +84,17 @@ typedef struct passin
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
+/**
+ *struct built - built-in
+ *@type: input
+ *@func: input
+ */
+typedef struct built
+{
+	char *type;
+	int (*func)(info_table *);
+} built_table;
+
 ssize_t input_buff(info_table *info, char **buff, size_t *len);
 ssize_t _input(info_table *info);
 int _getline(info_table *inform, char **pt, size_t *leng);
@@ -119,4 +130,14 @@ int _app(info_table *inform, char **a);
 size_t print_list(const list_table *value);
 list_table *node_starts_with(list_table *nodes, char *pre, char c);
 ssize_t get_node_index(list_table *head, list_table *nodes);
+char *_strncpy(char *des, char *src, int n);
+char *_strncat(char *str1, char *str2, int b);
+char *_strchr(char *str, char c);
+int _errputchar(char c);
+void _errputs(char *str);
+int _putfdr(char c, int fdr);
+int _putsfdr(char *str, int fdr);
+void free_info(info_table *inform, int all);
+void set_inf(info_table *inform, char **av);
+void cl_info(info_table *inform);
 #endif
