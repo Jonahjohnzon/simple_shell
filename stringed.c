@@ -1,16 +1,9 @@
 #include "shell.h"
 
 /**
-<<<<<<< HEAD
  * _strcpy - copies a string pointer to another
  * @des: destination
  * @src: source
-=======
- * _strcpy - copies a string pointr to
- * @des: the destination
- * @src: the source
->>>>>>> d35c879afb8fa3e57025403a4d7ff623c95b34d1
- *
  * Return: pointer to the destination
  */
 char *_strcpy(char *des, char *src)
@@ -21,7 +14,7 @@ char *_strcpy(char *des, char *src)
 		return (des);
 	while (src[k])
 	{
-		des[i] = src[i];
+		des[k] = src[k];
 		k++;
 	}
 	des[k] = 0;
@@ -43,7 +36,7 @@ char *_strdup(const char *str)
 		return (NULL);
 	while (*str++)
 		len++;
-	ret = malloc(sizeof(char) * (len + 1));
+	dst = malloc(sizeof(char) * (len + 1));
 	if (!dst)
 		return (NULL);
 	for (len++; len--;)

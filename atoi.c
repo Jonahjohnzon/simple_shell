@@ -20,7 +20,7 @@ int interactive(info_table *dets)
 int is_delim(char c, char *del)
 {
 	while (*del)
-		if (*delim++ == c)
+		if (*del++ == c)
 			return (1);
 	return (0);
 }
@@ -47,7 +47,9 @@ int _isalpha(int c)
 
 int _atoi(char *str)
 {
-	int i, int j = 1, int k = 0, value;
+	int i;
+	int j = 1;
+	int k = 0, value;
 	unsigned int outcome = 0;
 
 	for (i = 0;  str[i] != '\0' && k != 2; i++)

@@ -18,8 +18,11 @@ ssize_t input_buff(info_table *info, char **buff, size_t *len)
 		free(*buff);
 		*buff = NULL;
 		signal(SIGINT, ctrl_Handler);
+#if USE_GETLINE
 		r = getline(buff, &len_, stdin);
+#else
 		r = _getline(info, buff, &len_);
+#endif
 		if (r > 0)
 		{
 			if ((*buff)[r - 1] == '\n')
@@ -62,10 +65,10 @@ ssize_t _input(info_table *info)
 		j = i;
 		p = buff + i;
 
-		check_chain(info, buff, &j, i, len);
+		chek_chain(info, buff, &j, i, len);
 		while (j < len)
 		{
-			if (is_chain(info, buff, &j))
+			if (_chain(info, buff, &j))
 				break;
 			j++;
 		}

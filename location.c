@@ -11,7 +11,7 @@ int _cmd(info_table *info, char *location)
 	struct stat st;
 
 	(void)info;
-	if (!location || stat(path, &st))
+	if (!location || stat(location, &st))
 		return (0);
 
 	if (st.st_mode & S_IFREG)
