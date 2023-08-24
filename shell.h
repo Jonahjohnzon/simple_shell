@@ -1,61 +1,91 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef _SHELL_H_
+#define _SHELL_H_
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <sys/wait.h>
 #include <sys/types.h>
-#include <errno.h>
-#include <stddef.h>
+#include <sys/wait.h>
 #include <sys/stat.h>
-#include <signal.h>
+#include <limits.h>
+#include <fcntl.h>
+#include <errno.h>
 
-
-int _putchar(char c);
-char *_getenv(const char *name);
-char **_strtok(char *str, const char *delim);
-void _exec(char **argv);
-void _print_word(char *str);
-void(*_checkers(char **arvg))(char **arvg);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-int _strlen(char *str);
-int _atoi(char *str);
+#define READ_BUF_SIZE 1024
+#define WRITE_BUF_SIZE 1024
+#define BUF_FLUSH -1
+#define CMD_NORM	0
+#define CMD_OR		1
+#define CMD_AND		2
+#define CMD_CHAIN	3
+#define CONVERT_LOWERCASE	1
+#define CONVERT_UNSIGNED	2
+#define USE_GETLINE 0
+#define USE_STRTOK 0
+#define HIST_FILE	".simple_shell_history"
+#define HIST_MAX	4096
 
 extern char **environ;
 /**
- * struct list_p - linked list
- * @dir: directory
- * @p: point to next
+ * struct listst - singly
+ * @num: input
+ * @str: string
+ * @next: next node
  */
-typedef struct list_p
+typedef struct listst
 {
-	char *dir;
-	struct list_p *p;
-} list_p;
-
-char *_strdup(char *str);
-char *concat_all(char *first, char *second, char *third);
-char *_which(char *file, list_p *head);
-list_p *linkp(char *path);
-list_p *add_node_end(list_p **head, char *str);
-void free_l(list_p *head);
+	int num;
+	char *str;
+	struct liststr *next;
+} list_table;
 /**
- * struct _build - linked list
- * @name: build
- * @func: execute
+ *struct passinfo - pseudo-arguements to pass into a function
+ *@arg: a string generated from getline
+ *@argv: strings generated from arg
+ *@path: string path
+ *@argc: argument count
+ *@line_count: error count
+ *@err_num: the error exit()s
+ *@linecount_flag: input
+ *@fname: the program file
+ *@env: environ
+ *@environ: custom modified
+ *@history: the history
+ *@alias: the alias
+ *@env_changed: on if environ 
+ *@status: the return status
+ *@cmd_buf: address of pointer
+ *@cmd_buf_type: CMD_types
+ *@readfd: the fd
+ *@histcount: the history
  */
-typedef struct _build
+typedef struct passin
 {
-	char *name;
-	void (*func)(char **);
-} _build;
-
-void _exitnow(char **arvg);
-void env(char **arv);
-void freearvg(char **arvg);
-void _unset(char **arvg);
-void _setenv(char **arv);
+	char *arg;
+	char **argv;
+	char *path;
+	int argc;
+	unsigned int line_count;
+	int err_num;
+	int linecount_flag;
+	char *fname;
+	list_table *env;
+	list_table *history;
+	list_table *alias;
+	char **environ;
+	int env_changed;
+	int status;
+	char **cmd_buf;
+	int cmd_buf_type;
+	int readfd;
+	int histcount;
+} info_table;
+#define INFO_INIT \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+	0, 0, 0}
+ssize_t input_buff(info_table *info, char **buff, size_t *len);
+ssize_t _input(info_table *info);
+int _getline(info_table *inform, char **pt, size_t *leng);
+void ctrl_Handler(__attribute__((unused))int sig);
 #endif
-
