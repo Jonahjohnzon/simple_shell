@@ -101,4 +101,13 @@ char *_begin_with(const char *str_a, const char *str_b);
 char *_strcat(char *des, char *src);
 int _env(info_table *info);
 char *_getenv(info_table *info, const char *name);
+int r_string(char **o, char *n);
+int r_vars(info_table *info);
+int r_alias(info_table *info);
+int _chain(info_table *info, char *buff, size_t *p);
+void chek_chain(info_table *info, char *buff, size_t *p, size_t i, size_t len);
+int interactive(info_table *dets);
+int is_delim(char c, char *del);
+int _isalpha(int c);
+int _atoi(char *str);
 #endif

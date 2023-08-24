@@ -6,7 +6,7 @@
  *
  * Return: 1 when interactive mode, 0 instead
  */
-int interactive(info_t *dets)
+int interactive(info_table *dets)
 {
 	return (isatty(STDIN_FILENO) && dets->readfd <= 2);
 }
