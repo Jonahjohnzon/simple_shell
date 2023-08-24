@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * strcpy - copies a string pointr to
- * @des: the destination
- * @src: the source
+ * _strcpy - copies a string pointer to another
+ * @des: destination
+ * @src: source
  *
  * Return: pointer to the destination
  */
-char *strcpy(char *des, char *src)
+char *_strcpy(char *des, char *src)
 {
 	int k = 0;
 
@@ -23,12 +23,12 @@ char *strcpy(char *des, char *src)
 }
 
 /**
- * strdup - duplicates a string
+ * _strdup - duplicates a string
  * @str: string to duplicate
  *
  * Return: pointer to the duplicated string
  */
-char *strdup(const char *str)
+char *_strdup(const char *str)
 {
 	int len = 0;
 	char *dst;
@@ -46,21 +46,21 @@ char *strdup(const char *str)
 }
 
 /**
- *puts - writes an input string
+ *_puts - writes an input string
  *@str: string to be written
  *
  * Return: Nothing
  */
-void puts(char *str)
+void _puts(char *str)
 {
-	int i = 0;
+	int k = 0;
 
 	if (!str)
 		return;
-	while (str[i] != '\0')
+	while (str[k] != '\0')
 	{
-		_putchar(str[i]);
-		i++;
+		_putchar(str[k]);
+		k++;
 	}
 }
 
@@ -73,15 +73,15 @@ void puts(char *str)
  */
 int _putchar(char c)
 {
-	static int i;
+	static int k;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || k >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, i);
-		i = 0;
+		write(1, buf, k);
+		k = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[i++] = c;
+		buf[k++] = c;
 	return (1);
 }

@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * interactive - returns true if shell is interactive mode
- * @dets: address
+ * interactive - reinstate true when shell is interactive mode
+ * @dets: content label
  *
- * Return: 1 if interactive mode, 0 otherwise
+ * Return: 1 when interactive mode, 0 instead
  */
 int interactive(info_t *dets)
 {
@@ -12,23 +12,23 @@ int interactive(info_t *dets)
 }
 
 /**
- * is_delim - inspect if character is a delimeter
+ * is_delim - checks if character is a delimeter
  * @c: character to search
- * @del: delimeter
- * Return: 1 if true, 0 if false
+ * @del: delimeter string
+ * Return: 1 when true, 0 when false
  */
 int is_delim(char c, char *del)
 {
 	while (*del)
-		if (*del++ == c)
+		if (*delim++ == c)
 			return (1);
 	return (0);
 }
 
 /**
  *_isalpha - inspect for alphabetic character
- *@c: character to insert
- *Return: 1 if c is alphabetic, 0 otherwise
+ *@c: character to be coded 
+ *Return: 1 if c is alphabetic, 0 instead
  */
 
 int _isalpha(int c)
@@ -40,32 +40,32 @@ int _isalpha(int c)
 }
 
 /**
- *_atoi - converts a string to an integer
- *@str: the string representation of an integral number
- *Return: 0 if no valid conversion on string, converted number otherwise
+ *_atoi - converts a string into an integer
+ *@str: string 
+ *Return: 0 if no value conversion, converted integral number instead
  */
 
 int _atoi(char *str)
 {
-	int i, sign = 1, flag = 0, value;
+	int i, int j = 1, int k = 0, value;
 	unsigned int outcome = 0;
 
-	for (i = 0;  str[i] != '\0' && flag != 2; i++)
+	for (i = 0;  str[i] != '\0' && k != 2; i++)
 	{
 		if (str[i] == '-')
-			sign *= -1;
+			j *= -1;
 
 		if (str[i] >= '0' && str[i] <= '9')
 		{
-			flag = 1;
+			k = 1;
 			outcome *= 10;
 			outcome += (str[i] - '0');
 		}
-		else if (flag == 1)
-			flag = 2;
+		else if (k == 1)
+			k = 2;
 	}
 
-	if (sign == -1)
+	if (j == -1)
 		value = -outcome;
 	else
 		value = outcome;
