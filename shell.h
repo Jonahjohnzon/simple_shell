@@ -88,4 +88,17 @@ ssize_t input_buff(info_table *info, char **buff, size_t *len);
 ssize_t _input(info_table *info);
 int _getline(info_table *inform, char **pt, size_t *leng);
 void ctrl_Handler(__attribute__((unused))int sig);
+int _free(void **loc);
+int _cmd(info_table *info, char *location);
+char *_dup(char *path, int a, int b);
+char *_path(info_table *info, char *paths, char *cmd);
+char *strcpy(char *des, char *src);
+char *strdup(const char *str);
+int _putchar(char c);
+int _strlen(char *str);
+int _strcmp(char *str1, char *str2);
+char *_begin_with(const char *str_a, const char *str_b);
+char *_strcat(char *des, char *src);
+int _env(info_table *info);
+char *_getenv(info_table *info, const char *name);
 #endif
