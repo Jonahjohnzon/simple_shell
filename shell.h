@@ -33,32 +33,32 @@ extern char **environ;
  * @str: string
  * @next: next node
  */
-typedef struct listst
+typedef struct liststr
 {
 	int num;
 	char *str;
 	struct liststr *next;
 } list_table;
 /**
- *struct passinfo - pseudo-arguements to pass into a function
- *@arg: a string generated from getline
- *@argv: strings generated from arg
- *@path: string path
- *@argc: argument count
- *@line_count: error count
- *@err_num: the error exit()s
- *@linecount_flag: input
- *@fname: the program file
- *@env: environ
- *@environ: custom modified
- *@history: the history
- *@alias: the alias
- *@env_changed: on if environ 
- *@status: the return status
- *@cmd_buf: address of pointer
- *@cmd_buf_type: CMD_types
- *@readfd: the fd
- *@histcount: the history
+ *struct passin - pseudo-arguement
+ *@arg: from getline
+ *@argv:from arg
+ *@path: string paths
+ *@argc: argument counts
+ *@line_count: error counts
+ *@err_num: the error exit
+ *@linecount_flag: inputs
+ *@fname: the program files
+ *@env: environment
+ *@environ: custom modify
+ *@history: the historys
+ *@alias: the aliass
+ *@env_changed: on if environment
+ *@status: the return statues
+ *@cmd_buf: address of pointers
+ *@cmd_buf_type: CMD_type
+ *@readfd: the fds
+ *@histcount: the historys
  */
 typedef struct passin
 {
@@ -95,6 +95,14 @@ typedef struct built
 	int (*func)(info_table *);
 } built_table;
 
+size_t list_l(const list_table *h);
+char **list_to_strings(list_table *heads);
+char *get_history_file(info_table *info);
+int write_history_event(info_table *info);
+int read_event(info_table *info);
+int build_event_list(info_table *info, char *buf, int linecount);
+int renumber_event(info_table *info);
+int env_list(info_table *inform);
 ssize_t input_buff(info_table *info, char **buff, size_t *len);
 ssize_t _input(info_table *info);
 int _getline(info_table *inform, char **pt, size_t *leng);
@@ -140,4 +148,21 @@ int _putsfdr(char *str, int fdr);
 void free_info(info_table *inform, int all);
 void set_inf(info_table *inform, char **av);
 void cl_info(info_table *inform);
+char **get_envi(info_table *inform);
+void find_c(info_table *inform);
+int _mhelp(info_table *inform);
+int _mcd(info_table *inform);
+int _mexit(info_table *inform);
+char *_memset(char *str, char b, unsigned int n);
+void ffree(char **ss);
+void *_realloc(void *ptr, unsigned int past_size, unsigned int built_size);
+int print_d(int input, int f);
+void print_err(info_table *inform, char *str);
+int _eratoi(char *a);
+void remove_comment(char *buff);
+char *convert_number(long int num, int base, int flag);
+void free_list(list_table **head_);int delete_node_(list_table **head, unsigned int ind);
+size_t print_list_s(const list_table *v);
+list_table *add_node_(list_table **heads, const char *st, int num);
+list_table *_addnode(list_table **heads, const char *st, int num);
 #endif

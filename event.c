@@ -34,7 +34,7 @@ int write_history_event(info_table *info)
 {
 	ssize_t fdr;
 	char *foldername = get_history_file(info);
-	list_t *node = NULL;
+	list_table *node = NULL;
 
 	if (!foldername)
 		return (-1);
@@ -89,16 +89,16 @@ int read_event(info_table *info)
 		if (buf[i] == '\n')
 		{
 			buf[i] = 0;
-			build_history_list(info, buf + last, linecount++);
+			build_event_list(info, buf + last, linecount++);
 			last = i + 1;
 		}
 	if (last != i)
-		build_history_list(info, buf + last, linecount++);
+		build_event_list(info, buf + last, linecount++);
 	free(buf);
 	info->histcount = linecount;
 	while (info->histcount-- >= HIST_MAX)
-		delete_node_at_index(&(info->history), 0);
-	renumber_history(info);
+		delete_node_(&(info->history), 0);
+	renumber_event(info);
 	return (info->histcount);
 }
 
@@ -112,11 +112,11 @@ int read_event(info_table *info)
  */
 int build_event_list(info_table *info, char *buf, int linecount)
 {
-	list_t *node = NULL;
+	list_table *node = NULL;
 
 	if (info->history)
 		node = info->history;
-	add_node_end(&node, buf, linecount);
+	add_node_(&node, buf, linecount);
 
 	if (!info->history)
 		info->history = node;
@@ -131,7 +131,7 @@ int build_event_list(info_table *info, char *buf, int linecount)
  */
 int renumber_event(info_table *info)
 {
-	list_t *node = info->history;
+	list_table *node = info->history;
 	int i = 0;
 
 	while (node)

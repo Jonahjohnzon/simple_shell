@@ -41,8 +41,8 @@ void set_inf(info_table *inform, char **av)
 			;
 		inform->argc = i;
 
-		replace_alias(inform);
-		replace_vars(inform);
+		r_alias(inform);
+		r_vars(inform);
 	}
 }
 
@@ -77,7 +77,7 @@ void free_info(info_table *inform, int all)
 		}
 		ffree(inform->environ);
 		{
-			inform>environ = NULL;
+			inform->environ = NULL;
 		}
 		_free((void **)inform->cmd_buf);
 

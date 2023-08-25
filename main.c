@@ -37,7 +37,7 @@ int main(int a, char **av)
 		}
 		inform->readfd = f;
 	}
-	_env_list(inform);
+	env_list(inform);
 	_app(inform, av);
 	return (EXIT_SUCCESS);
 }

@@ -1,5 +1,5 @@
 #include "shell.h"
-**
+/**
  * print_list - printf
  * @h: input
  * Return: size of list
@@ -34,7 +34,7 @@ list_table *node_starts_with(list_table *nodes, char *pre, char c)
 
 	while (nodes)
 	{
-		p = starts_with(nodes->str, pre);
+		p = _begin_with(nodes->str, pre);
 		if (p && ((c == -1) || (*p == c)))
 		{
 			return (nodes);

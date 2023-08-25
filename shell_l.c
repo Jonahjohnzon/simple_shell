@@ -26,13 +26,15 @@ int _app(info_table *inform, char **a)
 			set_inf(inform, a);
 			built_ret = find_built(inform);
 			if (built_ret == -1)
-				find_cmd(inform);
+			{
+				find_c(inform);
+			}
 		}
 		else if (interactive(inform))
 			_putchar('\n');
 		free_info(inform, 0);
 	}
-	write_history(inform);
+	write_history_event(inform);
 	free_info(inform, 1);
 	if (!interactive(inform) && inform->status)
 		exit(inform->status);
@@ -58,7 +60,7 @@ int find_built(info_table *inform)
 {
 	int i, built_in_ret = -1;
 	built_table builtintbl[] = {
-		{"exit", _exit},
+		{"exit", _mexit},
 		{"env", _env},
 		{NULL, NULL}
 	};
@@ -97,7 +99,7 @@ void find_c(info_table *inform)
 		return;
 	}
 
-	pathe = find_path(inform, _getenv(inform, "PATH="), inform->argv[0]);
+	pathe = _path(inform, _getenv(inform, "PATH="), inform->argv[0]);
 	if (pathe)
 	{
 		inform->path = pathe;
@@ -111,7 +113,7 @@ void find_c(info_table *inform)
 		else if (*(inform->arg) != '\n')
 		{
 			inform->status = 127;
-			print_error(inform, "not found\n");
+			print_err(inform, "not found\n");
 		}
 	}
 }
@@ -133,7 +135,7 @@ void fork_c(info_table *inform)
 	}
 	if (_pid == 0)
 	{
-		if (execve(inform->path, inform->argv, get_environ(inform)) == -1)
+		if (execve(inform->path, inform->argv, get_envi(inform)) == -1)
 		{
 			free_info(inform, 1);
 			if (errno == EACCES)
@@ -151,7 +153,7 @@ void fork_c(info_table *inform)
 			inform->status = WEXITSTATUS(inform->status);
 			if (inform->status == 126)
 			{
-				print_error(inform, "Permission denied\n");
+				print_err(inform, "Permission denied\n");
 			}
 		}
 	}

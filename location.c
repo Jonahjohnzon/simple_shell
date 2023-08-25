@@ -56,7 +56,7 @@ char *_path(info_table *info, char *paths, char *cmd)
 
 	if (!paths)
 		return (NULL);
-	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
+	if ((_strlen(cmd) > 2) && _begin_with(cmd, "./"))
 	{
 		if (_cmd(info, cmd))
 			return (cmd);

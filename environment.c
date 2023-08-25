@@ -7,7 +7,7 @@
  */
 int _env(info_table *info)
 {
-	print_list_str(info->env);
+	print_list_s(info->env);
 
 	return (0);
 }
@@ -26,7 +26,7 @@ char *_getenv(info_table *info, const char *name)
 
 	while (nodes)
 	{
-		p = starts_with(nodes->str, name);
+		p = _begin_with(nodes->str, name);
 		if (p && *p)
 		{
 			return (p);
