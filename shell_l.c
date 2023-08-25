@@ -65,6 +65,7 @@ int find_built(info_table *inform)
 		{"setenv", _seten},
 		{"unsetenv", _unseten},
 		{"help", _mhelp},
+		{"cd", _mcd},
 		{NULL, NULL}
 	};
 
