@@ -82,8 +82,10 @@ typedef struct passin
 	int histcounts;
 } info_table;
 #define INFO_INIT \
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
-	0, 0, 0}
+{ \
+    NULL, 0, NULL, 0, 0, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, 0, NULL, \
+    0, 0, 0 \
+}
 /**
  *struct built - built-in
  *@type: input
