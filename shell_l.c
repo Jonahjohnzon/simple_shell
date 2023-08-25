@@ -19,7 +19,7 @@ int _app(info_table *inform, char **a)
 		{
 			_puts("$ ");
 		}
-		_errputchar(BUF_FLUSH);
+		_errputchar(B_FLUSH);
 		r = _input(inform);
 		if (r != -1)
 		{
@@ -67,7 +67,7 @@ int find_built(info_table *inform)
 	};
 
 	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(inform->argv[0], builtintbl[i].type) == 0)
+		if (_strcmp(inform->argvv[0], builtintbl[i].type) == 0)
 		{
 			inform->line_count++;
 			built_in_ret = builtintbl[i].func(inform);
@@ -86,32 +86,32 @@ void find_c(info_table *inform)
 
 	int i, k;
 
-	inform->path = inform->argv[0];
+	inform->pathe = inform->argvv[0];
 	if (inform->linecount_flag == 1)
 	{
 		inform->line_count++;
 		inform->linecount_flag = 0;
 	}
-	for (i = 0, k = 0; inform->arg[i]; i++)
-		if (!is_delim(inform->arg[i], " \t\n"))
+	for (i = 0, k = 0; inform->args[i]; i++)
+		if (!is_delim(inform->args[i], " \t\n"))
 			k++;
 	if (!k)
 	{
 		return;
 	}
 
-	pathe = _path(inform, _getenv(inform, "PATH="), inform->argv[0]);
+	pathe = _path(inform, _getenv(inform, "PATH="), inform->argvv[0]);
 	if (pathe)
 	{
-		inform->path = pathe;
+		inform->pathe = pathe;
 		fork_c(inform);
 	}
 	else
 	{
 		if ((interactive(inform) || _getenv(inform, "PATH=")
-			|| inform->argv[0][0] == '/') && _cmd(inform, inform->argv[0]))
+			|| inform->argvv[0][0] == '/') && _cmd(inform, inform->argvv[0]))
 			fork_c(inform);
-		else if (*(inform->arg) != '\n')
+		else if (*(inform->args) != '\n')
 		{
 			inform->status = 127;
 			print_err(inform, "not found\n");
@@ -136,7 +136,7 @@ void fork_c(info_table *inform)
 	}
 	if (_pid == 0)
 	{
-		if (execve(inform->path, inform->argv, get_envi(inform)) == -1)
+		if (execve(inform->pathe, inform->argvv, get_envi(inform)) == -1)
 		{
 			free_info(inform, 1);
 			if (errno == EACCES)

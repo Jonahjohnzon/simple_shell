@@ -15,7 +15,7 @@ int _chain(info_table *info, char *buff, size_t *p)
 	{
 		buff[j] = 0;
 		j++;
-		info->cmd_buf_type = CMD_OR;
+		info->cmd_buff_type = CMD_O;
 	}
 	else if (buff[j] == '&' && buff[j + 1] == '&')
 	{
@@ -23,12 +23,12 @@ int _chain(info_table *info, char *buff, size_t *p)
 
 		j++;
 
-		info->cmd_buf_type = CMD_AND;
+		info->cmd_buff_type = CMD_A;
 	}
 	else if (buff[j] == ';')
 	{
 		buff[j] = 0;
-		info->cmd_buf_type = CMD_CHAIN;
+		info->cmd_buff_type = CMD_CHA;
 	}
 	else
 	{
@@ -51,7 +51,7 @@ void chek_chain(info_table *info, char *buff, size_t *p, size_t i, size_t len)
 {
 	size_t j = *p;
 
-	if (info->cmd_buf_type == CMD_AND)
+	if (info->cmd_buff_type == CMD_A)
 	{
 		if (info->status)
 		{
@@ -59,7 +59,7 @@ void chek_chain(info_table *info, char *buff, size_t *p, size_t i, size_t len)
 			j = len;
 		}
 	}
-	if (info->cmd_buf_type == CMD_OR)
+	if (info->cmd_buff_type == CMD_O)
 	{
 		if (!info->status)
 		{
@@ -85,12 +85,12 @@ int r_alias(info_table *info)
 
 	for (i = 0; i < 10; i++)
 	{
-		nodes = node_starts_with(info->alias, info->argv[0], '=');
+		nodes = node_starts_with(info->alias, info->argvv[0], '=');
 		if (!nodes)
 		{
 			return (0);
 		}
-		free(info->argv[0]);
+		free(info->argvv[0]);
 		p = _strchr(nodes->str, '=');
 		if (!p)
 		{
@@ -101,7 +101,7 @@ int r_alias(info_table *info)
 		{
 			return (0);
 		}
-		info->argv[0] = p;
+		info->argvv[0] = p;
 	}
 	return (1);
 }

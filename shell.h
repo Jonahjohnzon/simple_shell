@@ -1,30 +1,30 @@
-#ifndef _SHELL_H_
-#define _SHELL_H_
+#ifndef SHELL_H
+#define SHELL_H
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
+#include <errno.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/stat.h>
-#include <limits.h>
 #include <fcntl.h>
-#include <errno.h>
+#include <limits.h>
 
-#define READ_BUF_SIZE 1024
-#define WRITE_BUF_SIZE 1024
-#define BUF_FLUSH -1
-#define CMD_NORM	0
-#define CMD_OR		1
-#define CMD_AND		2
-#define CMD_CHAIN	3
-#define CONVERT_LOWERCASE	1
-#define CONVERT_UNSIGNED	2
-#define USE_GETLINE 0
-#define USE_STRTOK 0
-#define HIST_FILE	".simple_shell_history"
-#define HIST_MAX	4096
+#define HIST_F  ".simple_shell_history"
+#define READ_BUF_ 1024
+#define CMD_O           1
+#define B_FLUSH -1
+#define CMD_NO	0
+#define WRITE_BUF_ 1024
+#define CMD_A		2
+#define CONVERT_UNS	2
+#define USE_GETL 0
+#define CMD_CHA 3
+#define USE_STR 0
+#define HIST_M	4096
+#define CONVERT_LOWER   1
 
 extern char **environ;
 /**
@@ -41,49 +41,51 @@ typedef struct liststr
 } list_table;
 /**
  *struct passin - pseudo-arguement
- *@arg: from getline
- *@argv:from arg
- *@path: string paths
- *@argc: argument counts
- *@line_count: error counts
+ *@argvv:from arg
+ *@pathe: string paths
  *@err_num: the error exit
+ *@argcs: argument counts
+ *@args: from getline
+ *@line_count: error counts
  *@linecount_flag: inputs
- *@fname: the program files
- *@env: environment
- *@environ: custom modify
- *@history: the historys
+ *@fnames: the program files
+ *@envi: environment
+ *@enviro: custom modify
+ *@historys: the historys
+ *@cmd_buff: address of pointers
  *@alias: the aliass
- *@env_changed: on if environment
  *@status: the return statues
- *@cmd_buf: address of pointers
- *@cmd_buf_type: CMD_type
- *@readfd: the fds
- *@histcount: the historys
+ *@cmd_buff_type: CMD_type
+ *@env_change: on if environment
+ *@readfdd: the fds
+ *@histcounts: the historys
  */
 typedef struct passin
 {
-	char *arg;
-	char **argv;
-	char *path;
-	int argc;
+	char *args;
 	unsigned int line_count;
+	char **argvv;
+	int argcs;
 	int err_num;
-	int linecount_flag;
-	char *fname;
-	list_table *env;
-	list_table *history;
+	char *pathe;
+	char *fnames;
+	list_table *envi;
 	list_table *alias;
-	char **environ;
-	int env_changed;
+	int linecount_flag;
+	char **enviro;
+	int env_change;
+	list_table *historys;
 	int status;
-	char **cmd_buf;
-	int cmd_buf_type;
-	int readfd;
-	int histcount;
+	char **cmd_buff;
+	int readfdd;
+	int cmd_buff_type;
+	int histcounts;
 } info_table;
 #define INFO_INIT \
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
-	0, 0, 0}
+{ \
+    NULL, 0, NULL, 0, 0, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, 0, NULL, \
+    0, 0, 0 \
+}
 /**
  *struct built - built-in
  *@type: input

@@ -13,14 +13,18 @@ char *get_history_file(info_table *info)
 
 	dir = _getenv(info, "HOME=");
 	if (!dir)
+	{
 		return (NULL);
-	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
+	}
+	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_F) + 2));
 	if (!buf)
+	{
 		return (NULL);
+	}
 	buf[0] = 0;
 	_strcpy(buf, dir);
 	_strcat(buf, "/");
-	_strcat(buf, HIST_FILE);
+	_strcat(buf, HIST_F);
 	return (buf);
 }
 
@@ -37,18 +41,22 @@ int write_history_event(info_table *info)
 	list_table *node = NULL;
 
 	if (!foldername)
+	{
 		return (-1);
+	}
 
 	fdr = open(foldername, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	free(foldername);
 	if (fdr == -1)
+	{
 		return (-1);
-	for (node = info->history; node; node = node->next)
+	}
+	for (node = info->historys; node; node = node->next)
 	{
 		_putsfdr(node->str, fdr);
 		_putfdr('\n', fdr);
 	}
-	_putfdr(BUF_FLUSH, fdr);
+	_putfdr(B_FLUSH, fdr);
 	close(fdr);
 	return (1);
 }
@@ -67,8 +75,9 @@ int read_event(info_table *info)
 	char *buf = NULL, *filename = get_history_file(info);
 
 	if (!filename)
+	{
 		return (0);
-
+	}
 	fd = open(filename, O_RDONLY);
 	free(filename);
 	if (fd == -1)
@@ -95,11 +104,11 @@ int read_event(info_table *info)
 	if (last != i)
 		build_event_list(info, buf + last, linecount++);
 	free(buf);
-	info->histcount = linecount;
-	while (info->histcount-- >= HIST_MAX)
-		delete_node_(&(info->history), 0);
+	info->histcounts = linecount;
+	while (info->histcounts-- >= HIST_M)
+		delete_node_(&(info->historys), 0);
 	renumber_event(info);
-	return (info->histcount);
+	return (info->histcounts);
 }
 
 /**
@@ -114,24 +123,28 @@ int build_event_list(info_table *info, char *buf, int linecount)
 {
 	list_table *node = NULL;
 
-	if (info->history)
-		node = info->history;
+	if (info->historys)
+	{
+		node = info->historys;
+	}
 	add_node_(&node, buf, linecount);
 
-	if (!info->history)
-		info->history = node;
+	if (!info->historys)
+	{
+		info->historys = node;
+	}
 	return (0);
 }
 
 /**
  * renumber_event - renumbers the event linked list
  * @info: Structured potential arguments.
- *
  * Return: created histcount
  */
 int renumber_event(info_table *info)
 {
-	list_table *node = info->history;
+	list_table *node = info->historys;
+
 	int i = 0;
 
 	while (node)
@@ -139,5 +152,5 @@ int renumber_event(info_table *info)
 		node->num = i++;
 		node = node->next;
 	}
-	return (info->histcount = i);
+	return (info->histcounts = i);
 }

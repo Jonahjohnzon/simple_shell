@@ -7,7 +7,7 @@
  */
 int _myhistory(info_table *info)
 {
-	print_list(info->history);
+	print_list(info->historys);
 	return (0);
 }
 
@@ -25,7 +25,9 @@ int unset_alias(info_table *info, char *str)
 
 	p = _strchr(str, '=');
 	if (!p)
+	{
 		return (1);
+	}
 	a = *p;
 	*p = 0;
 	outcome = delete_node_(&(info->alias),
@@ -47,7 +49,9 @@ int set_alias(info_table *info, char *str)
 
 	p = _strchr(str, '=');
 	if (!p)
+	{
 		return (1);
+	}
 	if (!*++p)
 	{
 		return (unset_alias(info, str));
@@ -70,7 +74,9 @@ int print_alias(list_table *node)
 	{
 		p = _strchr(node->str, '=');
 		for (a = node->str; a <= p; a++)
+		{
 			_putchar(*a);
+		}
 		_putchar('\'');
 		_puts(p + 1);
 		_puts("'\n");
@@ -90,7 +96,7 @@ int _myalias(info_table *info)
 	char *p = NULL;
 	list_table *node = NULL;
 
-	if (info->argc == 1)
+	if (info->argcs == 1)
 	{
 		node = info->alias;
 		while (node)
@@ -100,13 +106,13 @@ int _myalias(info_table *info)
 		}
 		return (0);
 	}
-	for (a = 1; info->argv[a]; a++)
+	for (a = 1; info->argvv[a]; a++)
 	{
-		p = _strchr(info->argv[a], '=');
+		p = _strchr(info->argvv[a], '=');
 		if (p)
-			set_alias(info, info->argv[a]);
+			set_alias(info, info->argvv[a]);
 		else
-			print_alias(node_starts_with(info->alias, info->argv[a], '='));
+			print_alias(node_starts_with(info->alias, info->argvv[a], '='));
 	}
 
 	return (0);

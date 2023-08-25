@@ -7,7 +7,7 @@
  */
 int _unsetenv(info_table *info, char *var)
 {
-	list_table *node = info->env;
+	list_table *node = info->envi;
 	size_t a = 0;
 	char *p;
 
@@ -19,15 +19,15 @@ int _unsetenv(info_table *info, char *var)
 		p = _begin_with(node->str, var);
 		if (p && *p == '=')
 		{
-			info->env_changed = delete_node_(&(info->env), a);
+			info->env_change = delete_node_(&(info->envi), a);
 			a = 0;
-			node = info->env;
+			node = info->envi;
 			continue;
 		}
 		node = node->next;
 		a++;
 	}
-	return (info->env_changed);
+	return (info->env_change);
 }
 
 /**
@@ -52,7 +52,7 @@ int _setenv(info_table *info, char *var, char *value)
 	_strcpy(buf, var);
 	_strcat(buf, "=");
 	_strcat(buf, value);
-	node = info->env;
+	node = info->envi;
 	while (node)
 	{
 		p = _begin_with(node->str, var);
@@ -60,13 +60,13 @@ int _setenv(info_table *info, char *var, char *value)
 		{
 			free(node->str);
 			node->str = buf;
-			info->env_changed = 1;
+			info->env_change = 1;
 			return (0);
 		}
 		node = node->next;
 	}
-	add_node_(&(info->env), buf, 0);
+	add_node_(&(info->envi), buf, 0);
 	free(buf);
-	info->env_changed = 1;
+	info->env_change = 1;
 	return (0);
 }

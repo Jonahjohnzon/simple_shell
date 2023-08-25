@@ -7,11 +7,11 @@
  */
 char **get_envi(info_table *inform)
 {
-	if (!inform->environ || inform->env_changed)
+	if (!inform->enviro || inform->env_change)
 	{
-		inform->environ = list_to_strings(inform->env);
-		inform->env_changed = 0;
+		inform->enviro = list_to_strings(inform->envi);
+		inform->env_change = 0;
 	}
 
-	return (inform->environ);
+	return (inform->enviro);
 }

@@ -23,19 +23,21 @@ int main(int a, char **av)
 		if (f == -1)
 		{
 			if (errno == EACCES)
+			{
 				exit(126);
+			}
 			if (errno == ENOENT)
 			{
 				_errputs(av[0]);
 				_errputs(": 0: Can't open ");
 				_errputs(av[1]);
 				_errputchar('\n');
-				_errputchar(BUF_FLUSH);
+				_errputchar(B_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
-		inform->readfd = f;
+		inform->readfdd = f;
 	}
 	env_list(inform);
 	_app(inform, av);

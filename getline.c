@@ -32,10 +32,10 @@ ssize_t input_buff(info_table *info, char **buff, size_t *len)
 			}
 			info->linecount_flag = 1;
 			remove_comment(*buff);
-			build_event_list(info, *buff, info->histcount++);
+			build_event_list(info, *buff, info->histcounts++);
 			{
 				*len = r;
-				info->cmd_buf = buff;
+				info->cmd_buff = buff;
 			}
 		}
 	}
@@ -45,7 +45,6 @@ ssize_t input_buff(info_table *info, char **buff, size_t *len)
 /**
  * _input - input
  * @info: inp
- *
  * Return: ssize
  */
 ssize_t _input(info_table *info)
@@ -53,9 +52,9 @@ ssize_t _input(info_table *info)
 	static char *buff;
 	static size_t i, j, len;
 	ssize_t r = 0;
-	char **buff_ = &(info->arg), *p;
+	char **buff_ = &(info->args), *p;
 
-	_putchar(BUF_FLUSH);
+	_putchar(B_FLUSH);
 
 	r = input_buff(info, &buff, &len);
 	if (r == -1)
@@ -77,7 +76,7 @@ ssize_t _input(info_table *info)
 		if (i >= len)
 		{
 			i = len = 0;
-			info->cmd_buf_type = CMD_NORM;
+			info->cmd_buff_type = CMD_NO;
 		}
 
 		*buff_ = p;
@@ -102,7 +101,7 @@ ssize_t read_buff(info_table *info, char *buff, size_t *i)
 
 	if (*i)
 		return (0);
-	value = read(info->readfd, buff, READ_BUF_SIZE);
+	value = read(info->readfdd, buff, READ_BUF_);
 	if (value >= 0)
 		*i = value;
 	return (value);
@@ -117,7 +116,7 @@ ssize_t read_buff(info_table *info, char *buff, size_t *i)
  */
 int _getline(info_table *inform, char **pt, size_t *leng)
 {
-	static char buff[READ_BUF_SIZE];
+	static char buff[READ_BUF_];
 	static size_t i, len;
 	size_t k;
 	ssize_t r = 0, s = 0;
@@ -164,5 +163,5 @@ void ctrl_Handler(__attribute__((unused))int sig)
 {
 	_puts("\n");
 	_puts("$ ");
-	_putchar(BUF_FLUSH);
+	_putchar(B_FLUSH);
 }
