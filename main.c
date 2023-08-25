@@ -39,6 +39,7 @@ int main(int a, char **av)
 		}
 		inform->readfdd = f;
 	}
+	read_event(inform);
 	env_list(inform);
 	_app(inform, av);
 	return (EXIT_SUCCESS);
