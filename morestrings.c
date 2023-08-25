@@ -71,7 +71,9 @@ char *_strchr(char *str, char c)
 {
 	do {
 		if (*str == c)
+		{
 			return (str);
+		}
 	} while (*str++ != '\0');
 
 	return (NULL);

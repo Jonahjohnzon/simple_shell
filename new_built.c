@@ -25,7 +25,9 @@ int unset_alias(info_table *info, char *str)
 
 	p = _strchr(str, '=');
 	if (!p)
+	{
 		return (1);
+	}
 	a = *p;
 	*p = 0;
 	outcome = delete_node_(&(info->alias),
@@ -47,7 +49,9 @@ int set_alias(info_table *info, char *str)
 
 	p = _strchr(str, '=');
 	if (!p)
+	{
 		return (1);
+	}
 	if (!*++p)
 	{
 		return (unset_alias(info, str));
@@ -70,7 +74,9 @@ int print_alias(list_table *node)
 	{
 		p = _strchr(node->str, '=');
 		for (a = node->str; a <= p; a++)
+		{
 			_putchar(*a);
+		}
 		_putchar('\'');
 		_puts(p + 1);
 		_puts("'\n");

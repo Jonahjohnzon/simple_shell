@@ -13,10 +13,14 @@ char *get_history_file(info_table *info)
 
 	dir = _getenv(info, "HOME=");
 	if (!dir)
+	{
 		return (NULL);
+	}
 	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
 	if (!buf)
+	{
 		return (NULL);
+	}
 	buf[0] = 0;
 	_strcpy(buf, dir);
 	_strcat(buf, "/");
@@ -37,12 +41,16 @@ int write_history_event(info_table *info)
 	list_table *node = NULL;
 
 	if (!foldername)
+	{
 		return (-1);
+	}
 
 	fdr = open(foldername, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	free(foldername);
 	if (fdr == -1)
+	{
 		return (-1);
+	}
 	for (node = info->history; node; node = node->next)
 	{
 		_putsfdr(node->str, fdr);
@@ -67,8 +75,9 @@ int read_event(info_table *info)
 	char *buf = NULL, *filename = get_history_file(info);
 
 	if (!filename)
+	{
 		return (0);
-
+	}
 	fd = open(filename, O_RDONLY);
 	free(filename);
 	if (fd == -1)
@@ -115,23 +124,27 @@ int build_event_list(info_table *info, char *buf, int linecount)
 	list_table *node = NULL;
 
 	if (info->history)
+	{
 		node = info->history;
+	}
 	add_node_(&node, buf, linecount);
 
 	if (!info->history)
+	{
 		info->history = node;
+	}
 	return (0);
 }
 
 /**
  * renumber_event - renumbers the event linked list
  * @info: Structured potential arguments.
- *
  * Return: created histcount
  */
 int renumber_event(info_table *info)
 {
 	list_table *node = info->history;
+
 	int i = 0;
 
 	while (node)

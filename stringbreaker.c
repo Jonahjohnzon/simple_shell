@@ -15,11 +15,14 @@ char **strtow(char *str, char *del)
 	if (str == NULL || str[0] == 0)
 		return (NULL);
 	if (!del)
+	{
 		del = " ";
+	}
 	for (i = 0; str[i] != '\0'; i++)
+	{
 		if (!is_delim(str[i], del) && (is_delim(str[i + 1], del) || !str[i + 1]))
 			num_words++;
-
+	}
 	if (num_words == 0)
 		return (NULL);
 	s = malloc((1 + num_words) * sizeof(char *));
@@ -66,7 +69,9 @@ char **str_tow(char *str, char del)
 		    (str[i] != del && !str[i + 1]) || str[i + 1] == del)
 			num_words++;
 	if (num_words == 0)
+	{
 		return (NULL);
+	}
 	s = malloc((1 + num_words) * sizeof(char *));
 	if (!s)
 		return (NULL);

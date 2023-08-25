@@ -11,10 +11,14 @@ int _strlen(char *str)
 	int i = 0;
 
 	if (!str)
+	{
 		return (0);
+	}
 
 	while (*str++)
+	{
 		i++;
+	}
 	return (i);
 }
 
@@ -56,8 +60,12 @@ int _strcmp(char *str1, char *str2)
 char *_begin_with(const char *str_a, const char *str_b)
 {
 	while (*str_b)
+	{
 		if (*str_b++ != *str_a++)
+		{
 			return (NULL);
+		}
+	}
 	return ((char *)str_a);
 }
 
@@ -73,9 +81,13 @@ char *_strcat(char *des, char *src)
 	char *ptr = des;
 
 	while (*des)
+	{
 		des++;
+	}
 	while (*src)
+	{
 		*des++ = *src++;
+	}
 	*des = *src;
 	return (ptr);
 }

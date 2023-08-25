@@ -11,7 +11,9 @@ void _errputs(char *str)
 	int a = 0;
 
 	if (!str)
+	{
 		return;
+	}
 	while (str[a] != '\0')
 	{
 		_errputchar(str[a]);
@@ -37,7 +39,9 @@ int _errputchar(char c)
 		a = 0;
 	}
 	if (c != BUF_FLUSH)
+	{
 		buf[a++] = c;
+	}
 	return (1);
 }
 
@@ -45,9 +49,7 @@ int _errputchar(char c)
  * _putfdr - register character c to given file dscriptor
  * @c: character to be written
  * @fdr: file descriptor to be processed
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: input
  */
 int _putfdr(char c, int fdr)
 {
@@ -60,7 +62,9 @@ int _putfdr(char c, int fdr)
 		a = 0;
 	}
 	if (c != BUF_FLUSH)
+	{
 		buf[a++] = c;
+	}
 	return (1);
 }
 
@@ -68,7 +72,6 @@ int _putfdr(char c, int fdr)
  *_putsfdr - register a given string
  * @str: the string to be printed
  * @fdr: filedescriptor to be processed
- *
  * Return: number of display char
  */
 int _putsfdr(char *str, int fdr)
@@ -76,7 +79,9 @@ int _putsfdr(char *str, int fdr)
 	int a = 0;
 
 	if (!str)
+	{
 		return (0);
+	}
 	while (*str)
 	{
 		a += _putfdr(*str++, fdr);
