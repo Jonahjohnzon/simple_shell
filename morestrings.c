@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- **_strncpy - copies up to n characters from the string pointer to
+ **_strncpy - copies up to n characters from the string pointer to another
  *@des: pointer destination
  *@src: string source
  *@n: required number of characters copied
