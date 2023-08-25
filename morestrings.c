@@ -34,7 +34,7 @@ char *_strncpy(char *des, char *src, int n)
  **_strncat - appends two strings
  *@str1: pointer destination
  *@str2: string to be appended
- *@b: maximum amount of character to be appended
+ *@b: maximum amount of appended character
  *Return: pointer to derived string dstination
  */
 char *_strncat(char *str1, char *str2, int b)

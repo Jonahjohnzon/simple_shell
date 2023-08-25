@@ -22,7 +22,7 @@ void _errputs(char *str)
 }
 
 /**
- * _errputchar - list the character specified by the argument to stderr
+ * _errputchar - list the specified character by the argument to stderr
  * @c: character to be written
  *
  * Return: On success 1.
