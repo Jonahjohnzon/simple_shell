@@ -25,7 +25,7 @@ char *get_history_file(info_table *info)
 }
 
 /**
- * write_history - writes or appends to an existing folder
+ * write_history_event -  writes or appends to an existing folder
  * @info: structured parameter
  *
  * Return: 1 on success, else -1

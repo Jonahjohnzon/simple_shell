@@ -28,7 +28,7 @@
 
 extern char **environ;
 /**
- * struct listst - singly
+ * struct liststr - singly
  * @num: input
  * @str: string
  * @next: next node
@@ -161,7 +161,8 @@ void print_err(info_table *inform, char *str);
 int _eratoi(char *a);
 void remove_comment(char *buff);
 char *convert_number(long int num, int base, int flag);
-void free_list(list_table **head_);int delete_node_(list_table **head, unsigned int ind);
+void free_list(list_table **);
+int delete_node_(list_table **, unsigned int ind);
 size_t print_list_s(const list_table *v);
 list_table *add_node_(list_table **heads, const char *st, int num);
 list_table *_addnode(list_table **heads, const char *st, int num);
