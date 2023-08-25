@@ -8,7 +8,7 @@
  */
 int _strlen(char *str)
 {
-	int i = 0;
+	int a = 0;
 
 	if (!str)
 	{
@@ -16,10 +16,8 @@ int _strlen(char *str)
 	}
 
 	while (*str++)
-	{
-		i++;
-	}
-	return (i);
+		a++;
+	return (a);
 }
 
 /**
