@@ -168,4 +168,9 @@ list_table *add_node_(list_table **heads, const char *st, int num);
 list_table *_addnode(list_table **heads, const char *st, int num);
 int _setenv(info_table *info, char *var, char *value);
 int _unsetenv(info_table *info, char *var);
+int _myhistory(info_table *info);
+int unset_alias(info_table *info, char *str);
+int set_alias(info_table *info, char *str);
+int print_alias(list_table *node);
+int _myalias(info_table *info);
 #endif

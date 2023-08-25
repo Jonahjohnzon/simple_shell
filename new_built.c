@@ -28,7 +28,7 @@ int unset_alias(info_table *info, char *str)
 		return (1);
 	a = *p;
 	*p = 0;
-	outcome = delete_node_at_index(&(info->alias),
+	outcome = delete_node_(&(info->alias),
 		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
 	*p = a;
 	return (outcome);
@@ -49,10 +49,11 @@ int set_alias(info_table *info, char *str)
 	if (!p)
 		return (1);
 	if (!*++p)
+	{
 		return (unset_alias(info, str));
-
+	}
 	unset_alias(info, str);
-	return (add_node_end(&(info->alias), str, 0) == NULL);
+	return (add_node_(&(info->alias), str, 0) == NULL);
 }
 
 /**
@@ -87,7 +88,7 @@ int _myalias(info_table *info)
 {
 	int a = 0;
 	char *p = NULL;
-	list_t *node = NULL;
+	list_table *node = NULL;
 
 	if (info->argc == 1)
 	{
