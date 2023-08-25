@@ -157,4 +157,4 @@ void fork_c(info_table *inform)
 			}
 		}
 	}
-
+}

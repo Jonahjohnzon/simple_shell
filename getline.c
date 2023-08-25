@@ -3,7 +3,7 @@
 /**
  * input_buff - buffer
  * @info: input
- * @buf: input
+ * @buff: input
  * @len: input
  *
  * Return: ssize

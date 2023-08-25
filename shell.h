@@ -165,4 +165,6 @@ void free_list(list_table **head_);int delete_node_(list_table **head, unsigned 
 size_t print_list_s(const list_table *v);
 list_table *add_node_(list_table **heads, const char *st, int num);
 list_table *_addnode(list_table **heads, const char *st, int num);
+int _setenv(info_table *info, char *var, char *value);
+int _unsetenv(info_table *info, char *var);
 #endif
