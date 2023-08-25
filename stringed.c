@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _strcpy - copies a string pointer to another
+ * _strcpy - copies a string pointer from one to another
  * @des: destination
  * @src: source
  * Return: pointer to the destination

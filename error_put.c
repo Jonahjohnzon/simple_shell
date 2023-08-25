@@ -46,7 +46,7 @@ int _errputchar(char c)
 }
 
 /**
- * _putfdr - register character c to given file dscriptor
+ * _putfdr - registers character c to given file dscriptor
  * @c: character to be written
  * @fdr: file descriptor to be processed
  * Return: input
