@@ -8,7 +8,7 @@
  */
 int _strlen(char *str)
 {
-	int i = 0;
+	int a = 0;
 
 	if (!str)
 		return (0);
