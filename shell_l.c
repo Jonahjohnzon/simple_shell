@@ -62,12 +62,9 @@ int find_built(info_table *inform)
 	built_table builtintbl[] = {
 		{"exit", _mexit},
 		{"env", _env},
-<<<<<<< HEAD
 		{"setenv", _seten},
 		{"unsetenv", _unseten},
-=======
-		{"help, _mhelp"},
->>>>>>> 84e240c630bec60064c41dfc3c8244b96105e233
+		{"help", _mhelp},
 		{NULL, NULL}
 	};
 
