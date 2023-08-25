@@ -2,7 +2,7 @@
 
 /**
  * get_envi - getenv
- * @info: input
+ * @inform: input
  * Return: 0
  */
 char **get_envi(info_table *inform)

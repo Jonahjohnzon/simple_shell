@@ -19,7 +19,7 @@ size_t list_l(const list_table *h)
 
 /**
  * list_to_strings - an array of string
- * @head: input
+ * @heads: input
  * Return: array
  */
 char **list_to_strings(list_table *heads)

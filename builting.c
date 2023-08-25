@@ -48,24 +48,17 @@ int _mcd(info_table *inform)
 	{
 		dirt = _getenv(inform, "HOME=");
 		if (!dirt)
-		{
 			chdir_r = /* TODO: what? */
 				chdir((dirt = _getenv(inform, "PWD=")) ? dirt : "/");
-		}
 		else
-		{
 			chdir_r = chdir(dirt);
-		}
 	}
 	else if (_strcmp(inform->argv[1], "-") == 0)
 	{
 		if (!_getenv(inform, "OLDPWD="))
-		{
 			_puts(s);
 			_putchar('\n');
-
 			return (1);
-		}
 		_puts(_getenv(inform, "OLDPWD=")), _putchar('\n');
 		chdir_r = /* TODO: */
 			chdir((dirt = _getenv(inform, "OLDPWD=")) ? dirt : "/");
@@ -75,15 +68,11 @@ int _mcd(info_table *inform)
 		chdir_r = chdir(inform->argv[1]);
 	}
 	if (chdir_r == -1)
-	{
 		print_err(inform, "can't cd to ");
 		_errputs(inform->argv[1]), _errputchar('\n');
-	}
 	else
-	{
 		_setenv(inform, "OLDPWD", _getenv(inform, "PWD="));
 		_setenv(inform, "PWD", getcwd(buff, 1024));
-	}
 	return (0);
 }
 

@@ -89,9 +89,9 @@ ssize_t _input(info_table *info)
 }
 
 /**
- * read_buff - buffer 
+ * read_buff - buffer
  * @info: info_t
- * @buf: buff
+ * @buff: buff
  * @i: input
  *
  * Return: ssize
@@ -110,10 +110,9 @@ ssize_t read_buff(info_table *info, char *buff, size_t *i)
 
 /**
  * _getline - getlin from terminal
- * @info: info
- * @ptr: info
- * @length: input
- *
+ * @inform: info
+ * @pt: info
+ * @leng: input
  * Return: int
  */
 int _getline(info_table *inform, char **pt, size_t *leng)

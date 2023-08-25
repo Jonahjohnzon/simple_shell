@@ -27,7 +27,7 @@ int is_delim(char c, char *del)
 
 /**
  *_isalpha - inspect for alphabetic character
- *@c: character to be coded 
+ *@c: character to be coded
  *Return: 1 if c is alphabetic, 0 instead
  */
 
@@ -41,7 +41,7 @@ int _isalpha(int c)
 
 /**
  *_atoi - converts a string into an integer
- *@str: string 
+ *@str: string
  *Return: 0 if no value conversion, converted integral number instead
  */
 

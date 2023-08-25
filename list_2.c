@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
  * print_list - printf
- * @h: input
+ * @value: input
  * Return: size of list
  */
 size_t print_list(const list_table *value)
@@ -23,7 +23,7 @@ size_t print_list(const list_table *value)
 
 /**
  * node_starts_with - return node
- * @node: input
+ * @nodes: input
  * @pre: input
  * @c: input
  * Return: list
@@ -35,6 +35,7 @@ list_table *node_starts_with(list_table *nodes, char *pre, char c)
 	while (nodes)
 	{
 		p = _begin_with(nodes->str, pre);
+
 		if (p && ((c == -1) || (*p == c)))
 		{
 			return (nodes);

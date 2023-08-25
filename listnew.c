@@ -81,7 +81,7 @@ list_table *add_node_(list_table **heads, const char *st, int num)
 
 /**
  * print_list_s - print string elrment
- * @h: input
+ * @v: input
  * Return: size_t
  */
 size_t print_list_s(const list_table *v)

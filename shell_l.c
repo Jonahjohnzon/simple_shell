@@ -82,7 +82,7 @@ int find_built(info_table *inform)
 void find_c(info_table *inform)
 {
 	char *pathe = NULL;
-	
+
 	int i, k;
 
 	inform->path = inform->argv[0];
@@ -120,7 +120,7 @@ void find_c(info_table *inform)
 
 /**
  * fork_c - fork cmd
- * @info: input
+ * @inform: input
  * Return: void
  */
 void fork_c(info_table *inform)
@@ -157,4 +157,4 @@ void fork_c(info_table *inform)
 			}
 		}
 	}
-}
+
