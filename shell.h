@@ -175,4 +175,6 @@ int unset_alias(info_table *info, char *str);
 int set_alias(info_table *info, char *str);
 int print_alias(list_table *node);
 int _myalias(info_table *info);
+int _seten(info_table *inform);
+int _unseten(info_table *inform);
 #endif
