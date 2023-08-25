@@ -80,14 +80,14 @@ void _puts(char *str)
 int _putchar(char c)
 {
 	static int k;
-	static char buf[WRITE_BUF_SIZE];
+	static char buf[WRITE_BUF_];
 
-	if (c == BUF_FLUSH || k >= WRITE_BUF_SIZE)
+	if (c == B_FLUSH || k >= WRITE_BUF_)
 	{
 		write(1, buf, k);
 		k = 0;
 	}
-	if (c != BUF_FLUSH)
+	if (c != B_FLUSH)
 	{
 		buf[k++] = c;
 	}

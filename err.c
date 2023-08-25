@@ -41,11 +41,11 @@ int _eratoi(char *a)
  */
 void print_err(info_table *inform, char *str)
 {
-	_errputs(inform->fname);
+	_errputs(inform->fnames);
 	_errputs(": ");
 	print_d(inform->line_count, STDERR_FILENO);
 	_errputs(": ");
-	_errputs(inform->argv[0]);
+	_errputs(inform->argvv[0]);
 	_errputs(": ");
 	_errputs(str);
 }
@@ -108,13 +108,13 @@ char *convert_number(long int num, int base, int flag)
 	char *pt;
 	unsigned long n = num;
 
-	if (!(flag & CONVERT_UNSIGNED) && num < 0)
+	if (!(flag & CONVERT_UNS) && num < 0)
 	{
 		n = -num;
 		sig = '-';
 
 	}
-	arr = flag & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	arr = flag & CONVERT_LOWER ? "0123456789abcdef" : "0123456789ABCDEF";
 	pt = &buff[49];
 	*pt = '\0';
 

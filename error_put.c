@@ -31,14 +31,14 @@ void _errputs(char *str)
 int _errputchar(char c)
 {
 	static int a;
-	static char buf[WRITE_BUF_SIZE];
+	static char buf[WRITE_BUF_];
 
-	if (c == BUF_FLUSH || a >= WRITE_BUF_SIZE)
+	if (c == B_FLUSH || a >= WRITE_BUF_)
 	{
 		write(2, buf, a);
 		a = 0;
 	}
-	if (c != BUF_FLUSH)
+	if (c != B_FLUSH)
 	{
 		buf[a++] = c;
 	}
@@ -54,14 +54,14 @@ int _errputchar(char c)
 int _putfdr(char c, int fdr)
 {
 	static int a;
-	static char buf[WRITE_BUF_SIZE];
+	static char buf[WRITE_BUF_];
 
-	if (c == BUF_FLUSH || a >= WRITE_BUF_SIZE)
+	if (c == B_FLUSH || a >= WRITE_BUF_)
 	{
 		write(fdr, buf, a);
 		a = 0;
 	}
-	if (c != BUF_FLUSH)
+	if (c != B_FLUSH)
 	{
 		buf[a++] = c;
 	}

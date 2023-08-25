@@ -9,18 +9,18 @@ int _mexit(info_table *inform)
 {
 	int exitc;
 
-	if (inform->argv[1])
+	if (inform->argvv[1])
 	{
-		exitc = _eratoi(inform->argv[1]);
+		exitc = _eratoi(inform->argvv[1]);
 		if (exitc == -1)
 		{
 			inform->status = 2;
 			print_err(inform, "Illegal number: ");
-			_errputs(inform->argv[1]);
+			_errputs(inform->argvv[1]);
 			_errputchar('\n');
 			return (1);
 		}
-		inform->err_num = _eratoi(inform->argv[1]);
+		inform->err_num = _eratoi(inform->argvv[1]);
 
 		return (-2);
 	}
@@ -42,7 +42,7 @@ int _mcd(info_table *inform)
 	s = getcwd(buff, 1024);
 	if (!s)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
-	if (!inform->argv[1])
+	if (!inform->argvv[1])
 	{
 		dirt = _getenv(inform, "HOME=");
 		if (!dirt)
@@ -51,7 +51,7 @@ int _mcd(info_table *inform)
 		else
 			chdir_r = chdir(dirt);
 	}
-	else if (_strcmp(inform->argv[1], "-") == 0)
+	else if (_strcmp(inform->argvv[1], "-") == 0)
 	{
 		if (!_getenv(inform, "OLDPWD="))
 		{
@@ -64,11 +64,11 @@ int _mcd(info_table *inform)
 			chdir((dirt = _getenv(inform, "OLDPWD=")) ? dirt : "/");
 	}
 	else
-		chdir_r = chdir(inform->argv[1]);
+		chdir_r = chdir(inform->argvv[1]);
 	if (chdir_r == -1)
 	{
 		print_err(inform, "can't cd to ");
-		_errputs(inform->argv[1]), _errputchar('\n');
+		_errputs(inform->argvv[1]), _errputchar('\n');
 	}
 	else
 	{
@@ -87,7 +87,7 @@ int _mhelp(info_table *inform)
 {
 	char **a_array;
 
-	a_array = inform->argv;
+	a_array = inform->argvv;
 	_puts("help call works. Function not yet implemented \n");
 	if (0)
 	{

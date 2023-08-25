@@ -7,10 +7,10 @@
 void cl_info(info_table *inform)
 {
 
-	inform->arg = NULL;
-	inform->argv = NULL;
-	inform->path = NULL;
-	inform->argc = 0;
+	inform->args = NULL;
+	inform->argvv = NULL;
+	inform->pathe = NULL;
+	inform->argcs = 0;
 }
 
 
@@ -23,25 +23,26 @@ void set_inf(info_table *inform, char **av)
 {
 	int i = 0;
 
-	inform->fname = av[0];
-	if (inform->arg)
+	inform->fnames = av[0];
+	if (inform->args)
 	{
-		inform->argv = strtow(inform->arg, " \t");
-		if (!inform->argv)
+		inform->argvv = strtow(inform->args, " \t");
+		if (!inform->argvv)
 		{
-		inform->argv = malloc(sizeof(char *) * 2);
-			if (inform->argv)
+		inform->argvv = malloc(sizeof(char *) * 2);
+			if (inform->argvv)
 			{
-			inform->argv[0] = _strdup(inform->arg);
-			inform->argv[1] = NULL;
+			inform->argvv[0] = _strdup(inform->args);
+			inform->argvv[1] = NULL;
 
 			}
 		}
-		for (i = 0; inform->argv && inform->argv[i]; i++)
+		for (i = 0; inform->argvv && inform->argvv[i]; i++)
 			;
-		inform->argc = i;
+		inform->argcs = i;
 
 		r_alias(inform);
+
 		r_vars(inform);
 	}
 }
@@ -54,37 +55,37 @@ void set_inf(info_table *inform, char **av)
  */
 void free_info(info_table *inform, int all)
 {
-	ffree(inform->argv);
-	inform->argv = NULL;
-	inform->path = NULL;
+	ffree(inform->argvv);
+	inform->argvv = NULL;
+	inform->pathe = NULL;
 	if (all)
 	{
-		if (!inform->cmd_buf)
+		if (!inform->cmd_buff)
 		{
-			free(inform->arg);
+			free(inform->args);
 		}
-		if (inform->env)
+		if (inform->envi)
 		{
-			free_list(&(inform->env));
+			free_list(&(inform->envi));
 		}
-		if (inform->history)
+		if (inform->historys)
 		{
-			free_list(&(inform->history));
+			free_list(&(inform->historys));
 		}
 		if (inform->alias)
 		{
 			free_list(&(inform->alias));
 		}
-		ffree(inform->environ);
+		ffree(inform->enviro);
 		{
-			inform->environ = NULL;
+			inform->enviro = NULL;
 		}
-		_free((void **)inform->cmd_buf);
+		_free((void **)inform->cmd_buff);
 
-		if (inform->readfd > 2)
+		if (inform->readfdd > 2)
 		{
-			close(inform->readfd);
+			close(inform->readfdd);
 		}
-		_putchar(BUF_FLUSH);
+		_putchar(B_FLUSH);
 	}
 }

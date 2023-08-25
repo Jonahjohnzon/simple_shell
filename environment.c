@@ -7,7 +7,7 @@
  */
 int _env(info_table *info)
 {
-	print_list_s(info->env);
+	print_list_s(info->envi);
 
 	return (0);
 }
@@ -20,7 +20,7 @@ int _env(info_table *info)
  */
 char *_getenv(info_table *info, const char *name)
 {
-	list_table *nodes = info->env;
+	list_table *nodes = info->envi;
 
 	char *p;
 

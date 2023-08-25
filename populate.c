@@ -13,6 +13,6 @@ int env_list(info_table *inform)
 	{
 		add_node_(&node, environ[i], 0);
 	}
-	inform->env = node;
+	inform->envi = node;
 	return (0);
 }
