@@ -21,7 +21,7 @@ int _seten(info_table *inform)
 
 /**
  * _unseten - unseten
- * @info: input
+ * @inform: input
  * Return: int
  */
 int _unseten(info_table *inform)
